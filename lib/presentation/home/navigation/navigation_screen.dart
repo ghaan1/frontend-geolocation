@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend_geolocation/presentation/home/landing/landing_screen.dart';
 import 'package:frontend_geolocation/presentation/home/profile/profile_screen.dart';
 
-import 'package:frontend_geolocation/util/app_color.dart';
+import 'package:frontend_geolocation/core/theme/app_color.dart';
 import 'package:provider/provider.dart';
 
 import 'navigation_provider.dart';

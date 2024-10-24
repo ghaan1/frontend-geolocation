@@ -1,6 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend_geolocation/presentation/auth/login_screen.dart';
+import 'package:frontend_geolocation/presentation/home/landing/landing_screen.dart';
 import 'package:frontend_geolocation/presentation/home/navigation/navigation_screen.dart';
-import 'package:frontend_geolocation/util/app_color.dart';
+import 'package:frontend_geolocation/presentation/home/profile/profile_screen.dart';
+import 'package:frontend_geolocation/presentation/splash/splash_provider.dart';
+import 'package:frontend_geolocation/core/theme/app_color.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -10,21 +16,40 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  late SplashProvider _provider;
   @override
   void initState() {
     super.initState();
-    // Future.delayed(const Duration(seconds: 2), () {
-    //   Navigator.pushReplacement(context,
-    //       MaterialPageRoute(builder: (context) => const NavigationScreen()));
-    // });
+    _provider = SplashProvider();
+    initData();
+  }
+
+  initData() async {
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+        context,
+        CupertinoPageRoute(
+          builder: (context) => const LoginScreen(),
+        ),
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => _provider,
+      builder: (context, child) => _buildPage(context),
+    );
+  }
+
+  Widget _buildPage(BuildContext context) {
+    final state = context.watch<SplashProvider>().state;
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          color: AppColor.primaryColor,
+          color: AppColor.primary,
         ),
         child: Stack(children: [
           Column(
@@ -32,8 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                    color: AppColor.primaryColor.shade400,
-                    shape: BoxShape.circle),
+                    color: AppColor.primary.shade400, shape: BoxShape.circle),
                 child: Column(
                   children: [
                     Center(

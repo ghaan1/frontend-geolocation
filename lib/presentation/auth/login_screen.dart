@@ -5,13 +5,12 @@ import 'package:frontend_geolocation/core/theme/app_font.dart';
 import 'package:frontend_geolocation/core/widget/button.dart';
 import 'package:frontend_geolocation/core/widget/edittext.dart';
 import 'package:frontend_geolocation/core/widget/label.dart';
+import 'package:frontend_geolocation/presentation/auth/login_provider.dart';
+import 'package:frontend_geolocation/presentation/auth/login_state.dart';
 import 'package:frontend_geolocation/presentation/home/landing/landing_screen.dart';
 import 'package:frontend_geolocation/presentation/splash/splash_screen.dart';
 import 'package:frontend_geolocation/util/string_extension.dart';
 import 'package:provider/provider.dart';
-
-import 'login_provider.dart';
-import 'login_state.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -34,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => _provider,
+      create: (BuildContext context) => LoginProvider(),
       builder: (context, child) => _buildPage(context),
     );
   }

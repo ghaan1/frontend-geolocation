@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend_geolocation/presentation/home/landing/landing_provider.dart';
 import 'package:frontend_geolocation/presentation/home/landing/widget/list_food_card.dart';
 import 'package:frontend_geolocation/presentation/home/landing/widget/picture_header_card.dart';
-import 'package:frontend_geolocation/util/app_color.dart';
+import 'package:frontend_geolocation/core/theme/app_color.dart';
 import 'package:provider/provider.dart';
 
 class LandingScreen extends StatefulWidget {
@@ -72,7 +72,7 @@ class _LandingScreenState extends State<LandingScreen> {
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.search,
-                        color: AppColor.primaryColor,
+                        color: AppColor.primary,
                       ),
                       filled: true,
                       fillColor: AppColor.whiteText,

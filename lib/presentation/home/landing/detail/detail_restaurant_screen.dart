@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend_geolocation/util/app_color.dart';
+import 'package:frontend_geolocation/core/theme/app_color.dart';
 import 'package:provider/provider.dart';
 
 import 'detail_restaurant_provider.dart';
@@ -39,7 +39,7 @@ class _DetailRestaurantScreenState extends State<DetailRestaurantScreen> {
           child: Column(
             children: [
               Container(
-                decoration: const BoxDecoration(color: AppColor.primaryColor),
+                decoration: const BoxDecoration(color: AppColor.primary),
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,8 +78,8 @@ class _DetailRestaurantScreenState extends State<DetailRestaurantScreen> {
                           children: [
                             Container(
                               height: 150,
-                              decoration: const BoxDecoration(
-                                  color: AppColor.primaryColor),
+                              decoration:
+                                  const BoxDecoration(color: AppColor.primary),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 100),
@@ -116,7 +116,7 @@ class _DetailRestaurantScreenState extends State<DetailRestaurantScreen> {
                                         children: [
                                           const Icon(
                                             Icons.star_border,
-                                            color: AppColor.primaryColor,
+                                            color: AppColor.primary,
                                           ),
                                           Text(
                                             '${detailRestaurantProvider?.rating}',
