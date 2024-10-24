@@ -1,0 +1,5 @@
+class ProfileState {
+  ProfileState() {
+    // constructor
+  }
+}

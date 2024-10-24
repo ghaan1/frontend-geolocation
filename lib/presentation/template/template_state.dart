@@ -1,0 +1,5 @@
+class TemplateState {
+  TemplateState() {
+    // constructor
+  }
+}
