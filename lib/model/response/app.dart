@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:frontend_geolocation/model/response/flavor.dart';
+import 'package:frontend_geolocation/core/enum/flavor.dart';
 
 class App {
   final Flavor flavor;

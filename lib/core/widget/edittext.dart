@@ -90,8 +90,9 @@ class Edittext extends StatelessWidget {
                   const BorderSide(width: 1.5, color: AppColor.greyLight),
             ),
             filled: true,
-            fillColor:
-                enabled || onTap != null ? Colors.white : AppColor.greyLight,
+            fillColor: enabled || onTap != null
+                ? AppColor.greyLight
+                : AppColor.greyLight,
           ),
         ),
       ),

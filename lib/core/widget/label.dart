@@ -6,6 +6,7 @@ class Label extends StatelessWidget {
   final bool isRequired;
   final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
+  final FontWeight? fontWeight; // Nullable fontWeight parameter
 
   const Label({
     super.key,
@@ -13,6 +14,7 @@ class Label extends StatelessWidget {
     this.isRequired = false,
     this.margin = const EdgeInsets.symmetric(vertical: 8),
     this.padding,
+    this.fontWeight, // Add fontWeight to the constructor
   });
 
   @override
@@ -22,7 +24,10 @@ class Label extends StatelessWidget {
       padding: padding,
       child: Row(
         children: [
-          Text(text),
+          Text(
+            text,
+            style: textSmall.copyWith(fontWeight: fontWeight), // Use fontWeight if provided
+          ),
           if (isRequired)
             Text(' *', style: textSmall.copyWith(color: Colors.red)),
         ],

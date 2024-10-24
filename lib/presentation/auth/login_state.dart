@@ -22,7 +22,7 @@ class LoginState {
   LoginState() {
     // emailController.text = 'adi@mail.com';
     // passwordController.text = 'password';
-    emailController.text = 'contractor@gmail.com';
-    passwordController.text = '112233';
+    emailController.text = '';
+    passwordController.text = '';
   }
 }
