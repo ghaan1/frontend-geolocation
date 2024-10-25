@@ -5,17 +5,27 @@ import 'package:fluttertoast/fluttertoast.dart';
 class LandingProvider extends ChangeNotifier {
   final state = LandingState();
 
-  Future<void> getListProjects() async {
-    state.status = ListRestauranStatus.loading;
-
-    var result = await state.restaurantRepository.getRestaurants();
-    result.fold((err) {
-      state.status = ListRestauranStatus.error;
-      Fluttertoast.showToast(msg: err.message ?? '');
-    }, (res) {
-      state.status = ListRestauranStatus.success;
-      state.restaurants = res.data ?? [];
-      notifyListeners();
-    });
-  }
+  final List<Map<String, String>> historyData = [
+    {
+      'title': 'Gedung Sate',
+      'latitude': '7.250°',
+      'longitude': '112.768°',
+      'address': 'Jalan Venus No 31 Malang XX',
+      'image': 'https://dummyimage.com/250/ffffff/000000'
+    },
+    {
+      'title': 'Borobudur Temple',
+      'latitude': '7.6079°',
+      'longitude': '110.2038°',
+      'address': 'Jalan Venus No 31 Malang XX',
+      'image': 'https://dummyimage.com/250/ffffff/000000'
+    },
+    {
+      'title': 'Mount Bromo',
+      'latitude': '-7.9425°',
+      'longitude': '112.953°',
+      'address': 'Jalan Venus No 31 Malang XX',
+      'image': 'https://dummyimage.com/250/ffffff/000000'
+    },
+  ];
 }

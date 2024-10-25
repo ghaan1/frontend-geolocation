@@ -37,7 +37,6 @@ class LocationProvider extends ChangeNotifier {
 
       await _cameraController?.initialize();
       print('Camera initialized successfully');
-      _startOcrDetection(); // Mulai OCR setelah kamera diinisialisasi
     } catch (e) {
       print('Error initializing camera: $e');
     }
@@ -87,8 +86,8 @@ class LocationProvider extends ChangeNotifier {
     return nv21;
   }
 
-  // Mulai deteksi OCR dari stream kamera
-  void _startOcrDetection() {
+  // Mulai deteksi OCR dari stream kamera, namun hanya dipanggil ketika diperlukan
+  void startOcrDetection() {
     if (_cameraController == null) return;
 
     _cameraController!.startImageStream((CameraImage image) async {
@@ -116,6 +115,13 @@ class LocationProvider extends ChangeNotifier {
         _isDetecting = false;
       }
     });
+  }
+
+  // Menghentikan OCR stream untuk mencegah resource overload
+  void stopOcrDetection() {
+    if (_cameraController != null && _cameraController!.value.isInitialized) {
+      _cameraController!.stopImageStream();
+    }
   }
 
   // Mendapatkan lokasi saat ini

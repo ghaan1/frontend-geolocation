@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:frontend_geolocation/presentation/home/location/next_page_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-
 import 'location_provider.dart';
 
 class LocationScreen extends StatefulWidget {
@@ -34,6 +33,15 @@ class _LocationScreenState extends State<LocationScreen> {
           Provider.of<LocationProvider>(context, listen: false);
       _askPermissions(locationProvider);
     });
+  }
+
+  @override
+  void dispose() {
+    // Hentikan OCR saat layar ditutup untuk menghemat resource
+    final locationProvider =
+        Provider.of<LocationProvider>(context, listen: false);
+    locationProvider.stopOcrDetection();
+    super.dispose();
   }
 
   @override
@@ -79,7 +87,8 @@ class _LocationScreenState extends State<LocationScreen> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          _locationProvider.getLocation();
+                          _locationProvider.getLocation(); // Ambil lokasi
+                          _locationProvider.startOcrDetection(); // Mulai OCR
                         },
                         child: const Text('Ambil Lokasi'),
                       ),
@@ -91,7 +100,8 @@ class _LocationScreenState extends State<LocationScreen> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          // Pindah ke halaman berikutnya
+                          _locationProvider
+                              .stopOcrDetection(); // Hentikan OCR sebelum lanjut
                           Navigator.push(
                             context,
                             MaterialPageRoute(
