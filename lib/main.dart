@@ -10,10 +10,9 @@ import 'package:frontend_geolocation/core/enum/flavor.dart'; // Ensure this is t
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  var dio = Dio(BaseOptions(baseUrl: 'https://restaurant-api.dicoding.dev'));
+  var dio = Dio(BaseOptions(baseUrl: 'https://geolocation.polinema.web.id/api'));
   dio.interceptors.add(PrettyDioLogger(requestBody: true));
 
-  // Initialize SharedPreferences and App, and register them with GetIt
   final sharedPrefs = await SharedPreferences.getInstance();
   final app = App(
     flavor: Flavor.development,

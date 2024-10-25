@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_geolocation/core/provider/session/session_provider.dart';
 import 'package:frontend_geolocation/core/theme/app_color.dart';
 
 import 'package:frontend_geolocation/presentation/auth/login_provider.dart';
@@ -15,6 +16,7 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => LandingProvider()),
+          ChangeNotifierProvider(create: (_) => SessionProvider()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

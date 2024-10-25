@@ -1,17 +1,17 @@
 class SingleResponse<T> {
-  int? apiStatus;
-  String? apiMessage;
+  String? status;
+  String? message;
   T? data;
 
-  SingleResponse({this.apiStatus, this.apiMessage, this.data});
+  SingleResponse({this.status, this.message, this.data});
 
   factory SingleResponse.fromJson(
     Map<String, dynamic> json,
     Function(Map<String, dynamic>) create,
   ) {
     return SingleResponse<T>(
-      apiStatus: json["api_success"],
-      apiMessage: json["api_message"],
+      status: json["status"],
+      message: json["message"],
       data: json["data"] != null ? create(json["data"]) : null,
     );
   }

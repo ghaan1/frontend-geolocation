@@ -2,7 +2,7 @@ import 'package:frontend_geolocation/core/service.dart';
 
 class SessionRepository {
   /// Shared preferences key
-  static const String keyAccessToken = 'access_token';
+  static const String keyAccessToken = 'token';
 
   Future<String> loadToken() async {
     String token = "";

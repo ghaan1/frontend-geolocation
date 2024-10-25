@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:frontend_geolocation/core/model/failure.dart';
@@ -15,10 +17,9 @@ class AuthRepository {
   }) async {
     try {
       final response = await dio.post(
-        "/login",
+        "/auth/login",
         data: {
-          'secret': '816fe8c8eb3ca75381e5562af63e8847',
-          'email': email,
+          'username': email,
           'password': password,
         },
       );

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend_geolocation/core/provider/session/session_provider.dart';
 import 'package:frontend_geolocation/presentation/auth/login_screen.dart';
 import 'package:frontend_geolocation/presentation/home/landing/landing_screen.dart';
 import 'package:frontend_geolocation/presentation/home/navigation/navigation_screen.dart';
@@ -25,6 +26,10 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   initData() async {
+    var sessionProvider = Provider.of<SessionProvider>(context, listen: false);
+
+    await sessionProvider.loadToken();
+    print(sessionProvider.state.token);
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,

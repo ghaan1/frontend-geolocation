@@ -1,4 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend_geolocation/core/provider/session/session_provider.dart';
+import 'package:frontend_geolocation/core/theme/app_color.dart';
+import 'package:frontend_geolocation/presentation/auth/login_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'profile_provider.dart';
@@ -28,8 +32,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget _buildPage(BuildContext context) {
-    return Consumer<ProfileProvider>(builder: (_, provider, __) {
-      return const Scaffold();
+    return Consumer2<ProfileProvider, SessionProvider>(
+        builder: (_, provider, sessionProvider, __) {
+      return Scaffold(
+        body: Container(
+          child: IconButton(
+            icon: Image.asset(
+              '/icons/ic-clockout.png',
+              width: 20,
+              color: AppColor.primary,
+            ),
+            onPressed: () async {
+              sessionProvider.deleteToken();
+              Navigator.pushAndRemoveUntil(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => const LoginScreen(),
+                ),
+                (route) => false, // Removes all previous routes
+              );
+            },
+          ),
+        ),
+      );
     });
   }
 }

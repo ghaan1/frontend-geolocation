@@ -1,17 +1,17 @@
 class TokenModel {
-  String? accessToken;
+  String? token;
   int? expiry;
 
-  TokenModel({this.accessToken, this.expiry});
+  TokenModel({this.token, this.expiry});
 
   TokenModel.fromJson(Map<String, dynamic> json) {
-    accessToken = json['access_token'];
+    token = json['token'];
     expiry = json['expiry'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['access_token'] = accessToken;
+    data['token'] = token;
     data['expiry'] = expiry;
     return data;
   }

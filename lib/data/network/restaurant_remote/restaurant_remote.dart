@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:frontend_geolocation/core/service.dart';
 
 import 'package:frontend_geolocation/model/response/base_response.dart';
-import 'package:frontend_geolocation/model/response/service.dart';
 
 import 'package:frontend_geolocation/model/response/failure.dart';
 import 'package:frontend_geolocation/model/response/list_response.dart';

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend_geolocation/presentation/home/landing/landing_provider.dart';
-import 'package:frontend_geolocation/presentation/home/landing/widget/list_food_card.dart';
-import 'package:frontend_geolocation/presentation/home/landing/widget/picture_header_card.dart';
 import 'package:frontend_geolocation/core/theme/app_color.dart';
-import 'package:provider/provider.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
@@ -13,157 +9,178 @@ class LandingScreen extends StatefulWidget {
 }
 
 class _LandingScreenState extends State<LandingScreen> {
-  late LandingProvider _provider;
-
-  @override
-  void initState() {
-    super.initState();
-    _provider = LandingProvider();
-    _provider.getListProjects();
-  }
+  // Static data for history with online image URLs
+  final List<Map<String, String>> historyData = [
+    {
+      'title': 'Gedung Sate',
+      'latitude': '7.250°',
+      'longitude': '112.768°',
+      'address': 'Jalan Venus No 31 Malang XX',
+      'image': 'https://dummyimage.com/250/ffffff/000000'
+    },
+    {
+      'title': 'Borobudur Temple',
+      'latitude': '7.6079°',
+      'longitude': '110.2038°',
+      'address': 'Jalan Venus No 31 Malang XX',
+      'image': 'https://dummyimage.com/250/ffffff/000000'
+    },
+    {
+      'title': 'Mount Bromo',
+      'latitude': '-7.9425°',
+      'longitude': '112.953°',
+      'address': 'Jalan Venus No 31 Malang XX',
+      'image': 'https://dummyimage.com/250/ffffff/000000'
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => _provider,
-      builder: (context, child) => _buildPage(context),
-    );
-  }
-
-  Widget _buildPage(BuildContext context) {
-    return Consumer<LandingProvider>(builder: (_, provider, __) {
-      return Scaffold(
-        body: SingleChildScrollView(
-            child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Text(
-                  'Home',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFF302F2C),
-                    fontSize: 16,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                    height: 0,
-                    letterSpacing: 1,
-                  ),
-                ),
-              ]),
-              SingleChildScrollView(
-                child: Container(
-                  margin: const EdgeInsets.only(top: 16),
-                  decoration: const BoxDecoration(boxShadow: [
-                    BoxShadow(
-                        offset: Offset(12, 26),
-                        blurRadius: 50,
-                        spreadRadius: 0,
-                        color: AppColor.secondaryBackground),
-                  ]),
-                  child: const TextField(
-                    // controller: test,
-                    // onChanged: (value) {
-                    //   setState(() {
-                    //     searchQuery = value;
-                    //   });
-                    // },
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: AppColor.primary,
-                      ),
-                      filled: true,
-                      fillColor: AppColor.whiteText,
-                      hintText: 'Search',
-                      hintStyle: TextStyle(color: Colors.grey),
-                      contentPadding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white, width: 1.0),
-                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white, width: 2.0),
-                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                      ),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Map Section
+            Stack(
+              children: [
+                Container(
+                  height: 300,
+                  color: Colors.grey[300], // Placeholder for map
+                  child: Center(
+                    child: Text(
+                      'Map View Placeholder',
+                      style: TextStyle(color: Colors.black54, fontSize: 18),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 16, bottom: 16),
-                height: 195,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: provider.state.restaurants.length,
-                  itemBuilder: (context, index) {
-                    var restaurantItems = provider.state.restaurants;
-                    return PictureHeaderCard(
-                        restaurantModel: restaurantItems[index]);
-                  },
+                Positioned(
+                  bottom: 20,
+                  right: 20,
+                  child: FloatingActionButton(
+                    backgroundColor: AppColor.primary,
+                    onPressed: () {},
+                    child: Icon(Icons.my_location, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            // Search Bar
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.search, color: AppColor.primary),
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Search place',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
                 ),
               ),
-              const Row(
+            ),
+            const SizedBox(height: 8),
+            // History Section Title
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Most Popular',
+                  const Text(
+                    'History',
                     style: TextStyle(
-                      color: Color(0xFF302F2C),
                       fontSize: 16,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
-                      height: 0,
-                      letterSpacing: 1,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'See all',
+                      style: TextStyle(color: AppColor.primary),
                     ),
                   ),
                 ],
               ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-                height: 450,
-                width: double.infinity,
-                child: (provider.state.restaurants.isEmpty)
-                    ? Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/images/img-no-data.png',
-                              width: 200,
-                              height: 200,
+            ),
+            // History List
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: historyData.length,
+              itemBuilder: (context, index) {
+                var item = historyData[index];
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Card(
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Image Section using Image.network
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              item['image']!,
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Icon(Icons
+                                      .error), // Show an error icon if the image fails to load
                             ),
-                            const Text('No Data'),
-                          ],
-                        ),
-                      )
-                    : GridView.builder(
-                        scrollDirection: Axis.vertical,
-                        gridDelegate:
-                            const SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 200,
-                                childAspectRatio: 2 / 2,
-                                crossAxisSpacing: 0,
-                                mainAxisSpacing: 0),
-                        itemCount: provider.state.restaurants.length,
-                        itemBuilder: (context, index) {
-                          var restaurantItems = provider.state.restaurants;
-                          return ListFoodCard(
-                            restaurantItems: restaurantItems[index],
-                            refreshParent: () => setState(() {}),
-                          );
-                        },
+                          ),
+                          const SizedBox(width: 16),
+                          // Details Section
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  item['title']!,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Text('• Latitude: ${item['latitude']}'),
+                                Text('• Longitude: ${item['longitude']}'),
+                                const SizedBox(height: 8),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on,
+                                      size: 16,
+                                      color: Colors.grey,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(item['address']!),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-              ),
-            ],
-          ),
-        )),
-      );
-    });
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

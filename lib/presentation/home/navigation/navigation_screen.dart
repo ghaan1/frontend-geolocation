@@ -16,7 +16,6 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<NavigationScreen> {
   late NavigationProvider _provider;
-  // final PageController _pageController = PageController();
   final List<Widget> _pages = const [LandingScreen(), ProfileScreen()];
 
   @override
@@ -24,16 +23,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
     super.initState();
     _provider = NavigationProvider();
   }
-
-  // void initializePage(int index) {
-  //   if (_pages[index] is StatefulElement) {
-  //     final StatefulElement element = _pages[index] as StatefulElement;
-  //     final State state = element.state;
-  //     if (state is StatefulWidget) {
-  //       state.initState();
-  //     }
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -49,22 +38,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
     return Scaffold(
       body: IndexedStack(index: state.active, children: _pages),
-      // body: PageView(
-      //   controller: _pageController,
-      //   children: _pages,
-      //   onPageChanged: (index) {
-      //     _provider.changeActiveMenu(index);
-      //     initializePage(index); // Initialize the page's data
-      //   },
-      // ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (value) {
           _provider.changeActiveMenu(value);
-          // _pageController.jumpToPage(value);
         },
         currentIndex: state.active,
-        // selectedLabelStyle: textExtraSmallSemiBold,
-        // unselectedLabelStyle: textExtraSmallSemiBold,
         unselectedItemColor: AppColor.primaryText,
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[

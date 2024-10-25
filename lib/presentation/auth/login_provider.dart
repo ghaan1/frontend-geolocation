@@ -18,13 +18,12 @@ class LoginProvider extends ChangeNotifier {
       email: state.emailController.text.trim(),
       password: state.passwordController.text.trim(),
     );
-
     result.fold((err) {
       state.status = LoginStatus.error;
       Fluttertoast.showToast(msg: err.message ?? '');
     }, (res) {
       state.status = LoginStatus.success;
-      state.sessionRepository.saveToken(res.data?.accessToken ?? '');
+      state.sessionRepository.saveToken(res.data?.token ?? '');
     });
     notifyListeners();
   }

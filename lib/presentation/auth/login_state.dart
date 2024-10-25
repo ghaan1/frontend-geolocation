@@ -20,9 +20,9 @@ class LoginState {
   var hidePassword = true;
 
   LoginState() {
-    // emailController.text = 'adi@mail.com';
-    // passwordController.text = 'password';
-    emailController.text = '';
-    passwordController.text = '';
+    emailController.text = 'superadmin';
+    passwordController.text = 'password';
+    // emailController.text = '';
+    // passwordController.text = '';
   }
 }

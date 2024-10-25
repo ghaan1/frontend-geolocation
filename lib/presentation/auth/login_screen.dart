@@ -140,21 +140,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                 provider.state.status == LoginStatus.loading,
                             label: 'Login',
                             onPressed: () async {
-                              // if (_formKey.currentState!.validate()) {
-                              //   await provider.login();
-                              //   if (provider.state.status ==
-                              //       LoginStatus.success) {
-                              if (context.mounted) {
-                                Navigator.push(
-                                  context,
-                                  CupertinoPageRoute(
-                                    builder: (context) =>
-                                        const NavigationScreen(),
-                                  ),
-                                );
+                              if (_formKey.currentState!.validate()) {
+                                await provider.login();
+                                if (provider.state.status ==
+                                    LoginStatus.success) {
+                                  if (context.mounted) {
+                                    Navigator.push(
+                                      context,
+                                      CupertinoPageRoute(
+                                        builder: (context) =>
+                                            const NavigationScreen(),
+                                      ),
+                                    );
+                                  }
+                                }
                               }
-                              //   }
-                              // }
                             },
                           ),
                         ],
