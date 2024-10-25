@@ -5,7 +5,7 @@ import 'package:frontend_geolocation/presentation/main_app.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get_it/get_it.dart';
-import 'package:frontend_geolocation/core/enum/flavor.dart'; // Ensure this is the correct import
+import 'package:frontend_geolocation/core/enum/flavor.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -5,6 +5,7 @@ import 'package:frontend_geolocation/core/theme/app_color.dart';
 import 'package:frontend_geolocation/presentation/auth/login_provider.dart';
 import 'package:frontend_geolocation/presentation/auth/login_screen.dart';
 import 'package:frontend_geolocation/presentation/home/landing/landing_provider.dart';
+import 'package:frontend_geolocation/presentation/home/location/location_provider.dart';
 import 'package:frontend_geolocation/presentation/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,7 @@ class MainApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => LandingProvider()),
           ChangeNotifierProvider(create: (_) => SessionProvider()),
+          ChangeNotifierProvider(create: (_) => LocationProvider()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

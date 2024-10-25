@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_geolocation/presentation/home/landing/landing_screen.dart';
+import 'package:frontend_geolocation/presentation/home/location/location_screen.dart';
 import 'package:frontend_geolocation/presentation/home/profile/profile_screen.dart';
 
 import 'package:frontend_geolocation/core/theme/app_color.dart';
@@ -16,7 +17,11 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<NavigationScreen> {
   late NavigationProvider _provider;
-  final List<Widget> _pages = const [LandingScreen(), ProfileScreen()];
+  final List<Widget> _pages = const [
+    LandingScreen(),
+    LocationScreen(),
+    ProfileScreen()
+  ];
 
   @override
   void initState() {
@@ -52,6 +57,13 @@ class _NavigationScreenState extends State<NavigationScreen> {
               child: Icon(Icons.home),
             ),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Padding(
+              padding: EdgeInsets.only(bottom: 2.0),
+              child: Icon(Icons.camera),
+            ),
+            label: 'Location',
           ),
           BottomNavigationBarItem(
             icon: Padding(

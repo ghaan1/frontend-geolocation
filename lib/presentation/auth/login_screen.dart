@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 400,
                         child: Center(
                           child: Image.asset(
-                            '/images/logo-primary.png',
+                            'assets/images/logo-primary.png',
                             width: 150,
                             height: 150,
                           ),
@@ -127,8 +127,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: const EdgeInsets.all(12.0),
                                 child: Image.asset(
                                   provider.state.hidePassword
-                                      ? '/icons/ic-eye-off.png'
-                                      : '/icons/ic-eye.png',
+                                      ? 'assets/icons/ic-eye-off.png'
+                                      : 'assets/icons/ic-eye.png',
                                   width: 20,
                                 ),
                               ),

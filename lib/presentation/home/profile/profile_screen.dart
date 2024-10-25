@@ -38,7 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         body: Container(
           child: IconButton(
             icon: Image.asset(
-              '/icons/ic-clockout.png',
+              'assets/icons/ic-clockout.png',
               width: 20,
               color: AppColor.primary,
             ),
