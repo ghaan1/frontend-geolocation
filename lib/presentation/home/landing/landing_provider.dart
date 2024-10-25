@@ -10,7 +10,7 @@ class LandingProvider extends ChangeNotifier {
       'title': 'Gedung Sate',
       'latitude': '7.250°',
       'longitude': '112.768°',
-      'address': 'Jalan Venus No 31 Malang XX',
+      'address': 'FQWX+43 Obama, Prefektur Fukui, Jepang',
       'image': 'https://dummyimage.com/250/ffffff/000000'
     },
     {
